@@ -48,6 +48,7 @@
       <textarea id="output" rows="10" cols="50"></textarea><br>
       <input type="button" value="Generate Script" onclick="generateScript();">
       <input type="button" value="Copy to Clipboard" onclick="copyToClipboard();">
+      <input type="button" value="Clear" onclick="clearFields();">
     </form>
 
     <script>
@@ -68,6 +69,13 @@
         var output = document.getElementById("output");
         output.select();
         document.execCommand("copy");
+      }
+
+      function clearFields() {
+        document.getElementById("username").value = "";
+        document.getElementById("webhook").value = "";
+        document.getElementById("loadingText").value = "";
+        document.getElementById("output").value = "";
       }
     </script>
   </body>
